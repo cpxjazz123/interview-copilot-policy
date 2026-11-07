@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Interview Copilot — Privacy Policy</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { max-width: 760px; margin: 48px auto; padding: 0 20px;
+         font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size: 30px; margin-bottom: 4px; }
+  h2 { font-size: 19px; margin-top: 34px; }
+  .meta { color: #6b7280; font-size: 14px; }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; margin: 14px 0; }
+  th, td { border: 1px solid #d7dce4; padding: 8px 10px; text-align: left; vertical-align: top; }
+  code { background: #f1f3f6; padding: 1px 4px; border-radius: 4px; font-size: 14px; }
+  ul { padding-left: 20px; }
+</style>
+</head>
+<body>
+<h1>Interview Copilot — Privacy Policy</h1>
+<p class="meta">Last updated: 7 November 2026</p>
+
+<p>Interview Copilot is a Chrome extension that transcribes interview audio you explicitly
+capture, extracts the interviewer's questions, and optionally forwards them to an agent endpoint
+that you configure. It has no developer-operated backend: nothing is sent to the extension's
+author.</p>
+
+<h2>What the extension handles</h2>
+<table>
+  <tr><th>Data</th><th>When</th><th>Where it goes</th></tr>
+  <tr>
+    <td>Audio from the tab or microphone you start on</td>
+    <td>Only between pressing <b>Start</b> and <b>Stop</b></td>
+    <td>Streamed to Deepgram for transcription with the API key you enter in Options. Never stored by the extension.</td>
+  </tr>
+  <tr>
+    <td>Transcript text</td>
+    <td>While recording</td>
+    <td>Kept in memory; written to <code>&lt;Downloads&gt;/file/transcript.txt</code> (path configurable).</td>
+  </tr>
+  <tr>
+    <td>Extracted questions</td>
+    <td>While recording or on <b>Extract now</b></td>
+    <td>Kept in memory; written to <code>&lt;Downloads&gt;/file/question.txt</code>. Optionally sent to CommandCode for LLM extraction with your own key.</td>
+  </tr>
+  <tr>
+    <td>Settings (API keys, endpoints, file paths)</td>
+    <td>When you save Options</td>
+    <td><code>chrome.storage.local</code> on this device.</td>
+  </tr>
+</table>
+
+<h2>Optional delivery</h2>
+<p>If you enable delivery in Options, the extension POSTs newly detected questions to the HTTP
+endpoint you provide (for example your own agent service). That endpoint is chosen by you; the
+extension ships with no endpoint configured and sends nothing while delivery mode is
+<code>none</code>.</p>
+
+<h2>Third parties</h2>
+<ul>
+  <li><b>Deepgram</b> (<code>api.deepgram.com</code>) — speech to text, using your account.</li>
+  <li><b>CommandCode</b> (<code>api.commandcode.ai</code>) — optional LLM question extraction, using your account.</li>
+  <li><b>Your own endpoint</b> — optional delivery of questions.</li>
+</ul>
+<p>Each of these services processes data under its own terms. There is no analytics, telemetry,
+crash reporting, or advertising SDK in the extension.</p>
+
+<h2>Retention and deletion</h2>
+<p>Transcript and question files stay in your Downloads folder until you delete them. In-memory
+state is cleared when you press <b>Reset</b> or when the service worker unloads. Removing the
+extension deletes its stored settings.</p>
+
+<h2>Permissions</h2>
+<ul>
+  <li><b>tabCapture / activeTab</b> — capture the audio of the tab you start recording on.</li>
+  <li><b>offscreen</b> — keep the audio pipeline and websocket alive outside the popup.</li>
+  <li><b>storage</b> — save your settings locally.</li>
+  <li><b>downloads / downloads.ui</b> — write the transcript and question files.</li>
+</ul>
+
+<h2>Children</h2>
+<p>The extension is not directed at children and collects no personal information by itself.</p>
+
+<h2>Changes</h2>
+<p>Material changes to this policy are published on this page.</p>
+
+<h2>Contact</h2>
+<p>Open an issue at <a href="https://github.com/cpxjazz123/interview/issues">github.com/cpxjazz123/interview/issues</a>.</p>
+</body>
+</html>
