@@ -57,6 +57,67 @@ endpoint you provide (for example your own agent service). That endpoint is chos
 extension ships with no endpoint configured and sends nothing while delivery mode is
 <code>none</code>.</p>
 
+<h2>Accounts on this site</h2>
+<p>
+  The extension has no account system, but this website does. When you create an account on
+  interview.cpxjazzx.com we store the following in a Cloudflare D1 database (region OC) in our
+  Cloudflare account:
+</p>
+<table>
+  <tr><th>Data</th><th>Why</th></tr>
+  <tr>
+    <td>Your email address</td>
+    <td>To sign you in, to email you a confirmation or password-reset link, and to keep abuse down.</td>
+  </tr>
+  <tr>
+    <td>Your name, if you type it or if Google supplies it</td>
+    <td>Shown on your account page.</td>
+  </tr>
+  <tr>
+    <td>When you sign in with Google: Google's account identifier (<code>sub</code>) and your profile picture URL</td>
+    <td>To link the Google account to the right Interview Copilot account. We never see your Google password.</td>
+  </tr>
+  <tr>
+    <td>When you use a password: a PBKDF2-HMAC-SHA256 hash of it</td>
+    <td>The password itself is never stored, and the hash cannot be turned back into a password.</td>
+  </tr>
+  <tr>
+    <td>Session tokens (stored as SHA-256 hashes), the client IP address and the browser user-agent</td>
+    <td>To keep you signed in and to detect automated abuse.</td>
+  </tr>
+  <tr>
+    <td>One-time email-confirmation and password-reset tokens (stored as hashes)</td>
+    <td>They expire after 24 hours and 1 hour respectively, and work once.</td>
+  </tr>
+  <tr>
+    <td>Rate-limit counters whose key contains your email address or IP address</td>
+    <td>To slow down repeated sign-up, sign-in and email requests. They expire after an hour.</td>
+  </tr>
+  <tr>
+    <td>Timestamps: when the account was created and when it last signed in</td>
+    <td>Account history.</td>
+  </tr>
+</table>
+<p>
+  None of it is sold, shared with advertisers, or handed to anyone else. There is no analytics or
+  advertising SDK on this site either.
+</p>
+
+<h3>How long it is kept</h3>
+<ul>
+  <li>Sessions: 30 days, then they stop working.</li>
+  <li>Confirmation tokens: 24 hours. Reset tokens: 1 hour. Both single-use.</li>
+  <li>Rate-limit counters: 1 hour.</li>
+  <li>Your account: until you delete it.</li>
+</ul>
+
+<h3>Deleting your account</h3>
+<p>
+  The <b>Delete account</b> button on your account page removes your account, every session and
+  every pending token immediately. Password accounts have to type their password first. Ask us at
+  the address below and we will delete it for you too.
+</p>
+
 <h2>Third parties</h2>
 <ul>
   <li><b>Deepgram</b> (<code>api.deepgram.com</code>) — speech to text, using your account.</li>
@@ -86,6 +147,6 @@ extension deletes its stored settings.</p>
 <p>Material changes to this policy are published on this page.</p>
 
 <h2>Contact</h2>
-<p>Open an issue at <a href="https://github.com/cpxjazz123/interview/issues">github.com/cpxjazz123/interview/issues</a>.</p>
+<p>Open an issue at <a href="https://github.com/cpxjazz123/interview/issues">github.com/cpxjazz123/interview/issues</a>, or email <a href="mailto:2031594452abcd@gmail.com">2031594452abcd@gmail.com</a>.</p>
 </body>
 </html>
